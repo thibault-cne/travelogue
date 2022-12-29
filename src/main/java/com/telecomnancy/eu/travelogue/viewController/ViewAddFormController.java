@@ -15,7 +15,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ViewAddFormController implements Initializable, Controller {
+public class ViewAddFormController implements Initializable, Controller, FormController {
     private TravelogueController travelogueController;
     private CommandController commandController;
     private SceneController sceneController;
@@ -54,13 +54,14 @@ public class ViewAddFormController implements Initializable, Controller {
         return description;
     }
 
-    public void setFile(File file) {
+    @Override
+    public void setPicture(File file) {
         this.pictureFile = file;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        picture.setOnAction(event -> commandController.selectPicture((Stage)((Node) event.getSource()).getScene().getWindow()));
+        picture.setOnAction(event -> commandController.selectPicture((Stage)((Node) event.getSource()).getScene().getWindow(), this));
         add.setOnAction(event -> {
             commandController.createNewDay();
             sceneController.mainScene();

@@ -1,10 +1,8 @@
 package com.telecomnancy.eu.travelogue;
 
-import com.google.gson.Gson;
-
-import java.io.*;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
+import java.util.Date;
 
 public class TravelogueController implements Observed {
     private Travelogue travelogue;
@@ -77,5 +75,20 @@ public class TravelogueController implements Observed {
     private void saveTravelogue() throws IOException {
         jsonFormatter.WriteToJSON("resources/travelogue.json");
         notifyObservers();
+    }
+
+    public void editDay(Date date, String title, String description, String picture) throws IOException {
+        travelogue.getDays().get(currentDay).setDate(date);
+        travelogue.getDays().get(currentDay).setTitle(title);
+        travelogue.getDays().get(currentDay).setDescription(description);
+        travelogue.getDays().get(currentDay).setPicture(picture);
+        saveTravelogue();
+    }
+
+    public void editDay(Date date, String title, String description) throws IOException {
+        travelogue.getDays().get(currentDay).setDate(date);
+        travelogue.getDays().get(currentDay).setTitle(title);
+        travelogue.getDays().get(currentDay).setDescription(description);
+        saveTravelogue();
     }
 }

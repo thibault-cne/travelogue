@@ -1,8 +1,10 @@
 package com.telecomnancy.eu.travelogue.command;
 
 import com.telecomnancy.eu.travelogue.TravelogueController;
+import com.telecomnancy.eu.travelogue.viewController.FormController;
 import com.telecomnancy.eu.travelogue.viewController.SceneController;
 import com.telecomnancy.eu.travelogue.viewController.ViewAddFormController;
+import com.telecomnancy.eu.travelogue.viewController.ViewEditFormController;
 import javafx.stage.Stage;
 
 public class CommandController {
@@ -11,6 +13,7 @@ public class CommandController {
     private TravelogueController travelogueController;
     private ViewAddFormController viewAddFormController;
     private SceneController sceneController;
+    private ViewEditFormController viewEditFormController;
 
     public CommandController(TravelogueController travelogueController, SceneController sceneController) {
         this.invoker = new Invoker();
@@ -21,6 +24,10 @@ public class CommandController {
 
     public void setViewAddFormController(ViewAddFormController viewAddFormController) {
         this.viewAddFormController = viewAddFormController;
+    }
+
+    public void setViewEditFormController(ViewEditFormController viewEditFormController) {
+        this.viewEditFormController = viewEditFormController;
     }
 
     public void removeDay() {
@@ -47,8 +54,8 @@ public class CommandController {
         invoker.executeCommand();
     }
 
-    public void selectPicture(Stage mainStage) {
-        Command command = new CommandPictureSelect(receiver, mainStage, viewAddFormController);
+    public void selectPicture(Stage mainStage, FormController formController) {
+        Command command = new CommandSelectPicture(receiver, mainStage, formController);
         invoker.setCommand(command);
         invoker.executeCommand();
     }
@@ -66,7 +73,7 @@ public class CommandController {
     }
 
     public void saveEditDay() {
-        Command command = new CommandSaveEditDay(receiver, sceneController);
+        Command command = new CommandSaveEditDay(receiver, sceneController, travelogueController, viewEditFormController);
         invoker.setCommand(command);
         invoker.executeCommand();
     }

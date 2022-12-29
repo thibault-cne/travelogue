@@ -1,15 +1,16 @@
 package com.telecomnancy.eu.travelogue.command;
 
 import com.telecomnancy.eu.travelogue.Day;
+import com.telecomnancy.eu.travelogue.FileWriter;
 import com.telecomnancy.eu.travelogue.TravelogueController;
+import com.telecomnancy.eu.travelogue.viewController.FormController;
 import com.telecomnancy.eu.travelogue.viewController.SceneController;
 import com.telecomnancy.eu.travelogue.viewController.ViewAddFormController;
+import com.telecomnancy.eu.travelogue.viewController.ViewEditFormController;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -40,7 +41,7 @@ public class Receiver {
         sceneController.addDayScene();
     }
 
-    public void selectPicture(Stage mainStage, ViewAddFormController viewAddFormController) {
+    public void selectPicture(Stage mainStage, FormController formController) {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Images files", "*.jpg", "*.png", "*.gif", "*.jpeg");
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(extFilter);
@@ -48,7 +49,7 @@ public class Receiver {
         File file = fileChooser.showOpenDialog(mainStage);
 
         if (file != null) {
-            viewAddFormController.setFile(file);
+            formController.setPicture(file);
         }
     }
 
@@ -64,34 +65,36 @@ public class Receiver {
 
         // Copy picture to the project folder
         File file = viewAddFormController.getPictureFile();
-        File newFile = new File("resources/pictures/" + file.getName());
-        FileInputStream is = null;
-        FileOutputStream os = null;
-        try {
-            is = new FileInputStream(file);
-            os = new FileOutputStream(newFile);
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = is.read(buffer)) > 0) {
-                os.write(buffer, 0, length);
-            }
-        } finally {
-            if (is != null) {
-                is.close();
-            }
-            if (os != null) {
-                os.close();
-            }
+        if (file == null) {
+            return;
         }
 
+        FileWriter.copyFile(file);
         Day day = new Day(date, titleString, descriptionString, "resources/pictures/" + file.getName());
 
         travelogueController.addDay(day);
         travelogueController.notifyObservers();
     }
 
-    public void saveEditDay(SceneController sceneController) {
-        // TODO
+    public void saveEditDay(SceneController sceneController, TravelogueController travelogueController, ViewEditFormController viewEditFormController) throws IOException {
+        // Convert date from DatePicker to Date
+        LocalDate localDate = viewEditFormController.getDate().getValue();
+        Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+        Date date = Date.from(instant);
+
+        // Get title and description
+        String titleString = viewEditFormController.getTitle().getText();
+        String descriptionString = viewEditFormController.getDescription().getText();
+
+        // Copy picture to the project folder
+        File file = viewEditFormController.getPictureFile();
+        if (file != null) {
+            FileWriter.copyFile(file);
+            travelogueController.editDay(date, titleString, descriptionString, "resources/pictures/" + file.getName());
+        } else {
+            travelogueController.editDay(date, titleString, descriptionString);
+        }
+
         sceneController.mainScene();
     }
 }

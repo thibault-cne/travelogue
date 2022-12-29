@@ -33,6 +33,22 @@ public class Day {
         return title.concat(" ").concat(description).concat(" ").concat(picture);
     }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
     public Image getPicture() {
         File file = new File(picture);
         return new Image(file.toURI().toString());
@@ -40,5 +56,9 @@ public class Day {
 
     public Date getDate() {
         return date;
+    }
+
+    public File getPictureFile() {
+        return new File(picture);
     }
 }
