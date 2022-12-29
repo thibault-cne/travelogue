@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<VBox xmlns:fx="http://javafx.com/fxml">
+    <Label text="Add a new day"/>
+    <Label text="Date"/>
+    <DatePicker fx:id="date"/>
+    <Label text="Title"/>
+    <TextField fx:id="title"/>
+    <Label text="Description"/>
+    <TextArea fx:id="description"/>
+    <Label text="Picture"/>
+    <ImageView fx:id="oldPicture"/>
+    <Button fx:id="picture" text="Choose a picture"/>
+    <Button fx:id="edit" text="Edit"/>
+</VBox>

@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Day {
@@ -35,5 +36,9 @@ public class Day {
     public Image getPicture() {
         File file = new File(picture);
         return new Image(file.toURI().toString());
+    }
+
+    public Date getDate() {
+        return date;
     }
 }

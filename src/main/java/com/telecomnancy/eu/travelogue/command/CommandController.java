@@ -3,10 +3,7 @@ package com.telecomnancy.eu.travelogue.command;
 import com.telecomnancy.eu.travelogue.TravelogueController;
 import com.telecomnancy.eu.travelogue.viewController.SceneController;
 import com.telecomnancy.eu.travelogue.viewController.ViewAddFormController;
-import com.telecomnancy.eu.travelogue.viewController.ViewController;
 import javafx.stage.Stage;
-
-import java.io.File;
 
 public class CommandController {
     private Invoker invoker;
@@ -58,6 +55,18 @@ public class CommandController {
 
     public void createNewDay() {
         Command command = new CommandCreateNewDay(travelogueController, receiver, viewAddFormController);
+        invoker.setCommand(command);
+        invoker.executeCommand();
+    }
+
+    public void editDay() {
+        Command command = new CommandEditDay(receiver, sceneController);
+        invoker.setCommand(command);
+        invoker.executeCommand();
+    }
+
+    public void saveEditDay() {
+        Command command = new CommandSaveEditDay(receiver, sceneController);
         invoker.setCommand(command);
         invoker.executeCommand();
     }

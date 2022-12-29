@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="travelogue">
+    <output-path>$PROJECT_DIR$/out/artifacts/travelogue</output-path>
+    <root id="root">
+      <element id="archive" name="travelogue.jar">
+        <element id="module-output" name="travelogue" />
+      </element>
+      <element id="library" level="project" name="google.code.gson" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:19" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:19" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:19" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:19" />
+    </root>
+  </artifact>
+</component>

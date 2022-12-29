@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import java.io.IOException;
 
-public class SceneController {
+public class SceneController implements Controller {
     private ArrayList<Scene> scenes = new ArrayList<Scene>();
     private Stage stage;
 
@@ -29,7 +29,7 @@ public class SceneController {
         stage.show();
     }
 
-    public void switchScene(int index) {
+    private void switchScene(int index) {
         stage.setScene(scenes.get(index));
     }
 
@@ -45,18 +45,33 @@ public class SceneController {
         // Create view controller
         ViewController viewController = new ViewController(travelogueController, commandController);
 
-        // Load view
-        FXMLLoader fxmlLoader = new FXMLLoader(TravelogueApplication.class.getResource("view.fxml"));
-        fxmlLoader.setController(viewController);
-
-        scenes.add(new Scene(fxmlLoader.load(), width, height));
-
-        // Load add day view
+        // Create add day view controller
         ViewAddFormController viewAddFormController = new ViewAddFormController(travelogueController, commandController, this);
 
-        fxmlLoader = new FXMLLoader(TravelogueApplication.class.getResource("addForm.fxml"));
-        fxmlLoader.setController(viewAddFormController);
+        // Create edit day view controller
+        ViewEditFormController viewEditFormController = new ViewEditFormController(travelogueController, commandController, this);
 
-        scenes.add(new Scene(fxmlLoader.load(), width, height));
+        generateView(viewController, "view.fxml", width, height);
+        generateView(viewAddFormController,"addForm.fxml", width, height);
+        generateView(viewEditFormController,"editForm.fxml", width, height);
+    }
+
+    private void generateView(Controller controller, String fxml, int width, int height) throws IOException {
+        FXMLLoader loader = new FXMLLoader(TravelogueApplication.class.getResource(fxml));
+        loader.setController(controller);
+        Scene scene = new Scene(loader.load(), width, height);
+        scenes.add(scene);
+    }
+
+    public void editDayScene() {
+        switchScene(2);
+    }
+
+    public void addDayScene() {
+        switchScene(1);
+    }
+
+    public void mainScene() {
+        switchScene(0);
     }
 }

@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ViewController implements Initializable, Observer {
+public class ViewController implements Initializable, Observer, Controller {
     private TravelogueController travelogueController;
     private CommandController commandController;
     @FXML
@@ -52,6 +52,9 @@ public class ViewController implements Initializable, Observer {
         });
         addDay.setOnAction(event -> {
             commandController.addDay();
+        });
+        editDay.setOnAction(event -> {
+            commandController.editDay();
         });
 
         updatePicture();

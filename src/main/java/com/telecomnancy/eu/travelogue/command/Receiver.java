@@ -32,8 +32,12 @@ public class Receiver {
         travelogueController.notifyObservers();
     }
 
+    public void editDay(SceneController sceneController) {
+        sceneController.editDayScene();
+    }
+
     public void addDay(SceneController sceneController) {
-        sceneController.switchScene(1);
+        sceneController.addDayScene();
     }
 
     public void selectPicture(Stage mainStage, ViewAddFormController viewAddFormController) {
@@ -84,5 +88,10 @@ public class Receiver {
 
         travelogueController.addDay(day);
         travelogueController.notifyObservers();
+    }
+
+    public void saveEditDay(SceneController sceneController) {
+        // TODO
+        sceneController.mainScene();
     }
 }
