@@ -5,7 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Objects;
 
 public class HelloApplication extends Application {
     @Override
@@ -17,7 +19,11 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+
         launch();
+        JsonParser parser = new JsonParser(Objects.requireNonNull(HelloApplication.class.getResource("travelogue.json")).getPath());
+        Travelogue travelogue = parser.getTravelogue();
+        System.out.println(travelogue.toString());
     }
 }

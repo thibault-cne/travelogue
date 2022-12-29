@@ -1,0 +1,29 @@
+{
+  "title": "My Travelogue",
+  "description": "A travelogue of my trip to the moon",
+  "author": "John Doe",
+  "begDate": "2015-01-01",
+  "endDate": "2015-01-15",
+  "days": [
+    {
+      "date": "2015-01-01",
+      "title": "Day 1",
+      "description": "I left Earth",
+      "picture": "resources/earth.jpg"
+    },
+    {
+      "date": "2015-01-02",
+      "title": "Day 2",
+      "description": "I landed on the moon",
+        "picture": "resources/moon.jpg"
+    }
+  ],
+  "participants": [
+    {
+      "name": "John Doe"
+    },
+    {
+      "name": "Jane Doe"
+    }
+  ]
+}
