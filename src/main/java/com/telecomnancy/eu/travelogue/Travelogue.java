@@ -9,8 +9,8 @@ public class Travelogue {
     private String author;
     private String title;
     private String description;
-    private Participant[] participants = new Participant[0];
-    private Day[] days = new Day[0];
+    private ArrayList<Participant> participants = new ArrayList<Participant>();
+    private ArrayList<Day> days = new ArrayList<Day>();
 
     public Travelogue(Date begDate, Date endDate, String author, String title) {
         this.begDate = begDate;
@@ -21,5 +21,21 @@ public class Travelogue {
 
     public String toString() {
         return "Travelogue: " + title + " by " + author;
+    }
+
+    public ArrayList<Day> getDays() {
+        return days;
+    }
+
+    public void addDay(Day day) {
+        days.add(day);
+    }
+
+    public Day getDay(int index) {
+        return days.get(index);
+    }
+
+    public void removeDay(int index) {
+        days.remove(index);
     }
 }

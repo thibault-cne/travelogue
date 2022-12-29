@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml">
+    <Label text="Add a new day"/>
+    <Label text="Date"/>
+    <DatePicker fx:id="date"/>
+    <Label text="Title"/>
+    <TextField fx:id="title"/>
+    <Label text="Description"/>
+    <TextArea fx:id="description"/>
+    <Label text="Picture"/>
+    <Button fx:id="picture" text="Choose a picture"/>
+    <Button fx:id="add" text="Add"/>
+</VBox>
