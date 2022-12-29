@@ -1,12 +1,35 @@
 {
-  "begDate":"Jan 1, 2015, 12:00:00 AM",
-  "endDate":"Jan 2, 2015, 12:00:00 AM",
-  "author":"John Doe",
-  "title":"My Travelogue",
-  "description":"A travelogue of my trip to the moon",
-  "participants":[{"name":"John Doe"},{"name":"Jane Doe"}],
-  "days":[
-    {"date":"Jan 1, 2015, 12:00:00 AM","title":"Day 1","description":"I landed on the earth","picture":"resources/pictures/earth.jpeg"}
-    {"date":"Jan 2, 2015, 12:00:00 AM","title":"Day 2","description":"I landed on the moon","picture":"resources/pictures/moon.jpeg"}
+  "begDate": "Jan 1, 2015, 12:00:00 AM",
+  "endDate": "Jan 2, 2015, 12:00:00 AM",
+  "author": "John Doe",
+  "title": "My Travelogue",
+  "description": "A travelogue of my trip to the moon",
+  "participants": [
+    {
+      "name": "John Doe"
+    },
+    {
+      "name": "Jane Doe"
+    }
+  ],
+  "days": [
+    {
+      "date": "Jan 1, 2015, 12:00:00 AM",
+      "title": "Day 1",
+      "description": "I landed on the earth",
+      "picture": "resources/pictures/earth.jpeg"
+    },
+    {
+      "date": "Jan 2, 2015, 12:00:00 AM",
+      "title": "Day 2",
+      "description": "I landed on the moon",
+      "picture": "resources/pictures/moon.jpeg"
+    },
+    {
+      "date": "Jan 3, 2015, 12:00:00 AM",
+      "title": "Day 3",
+      "description": "I landed on mercure",
+      "picture": "resources/pictures/mercure.jpeg"
+    }
   ]
 }

@@ -10,9 +10,12 @@ public class TravelogueController implements Observed {
     private Travelogue travelogue;
     private  int currentDay;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
+    private JsonFormatter jsonFormatter;
 
     public TravelogueController(Travelogue travelogue) {
         this.travelogue = travelogue;
+        jsonFormatter = new JsonFormatter(travelogue);
+        currentDay = 0;
     }
 
     @Override
@@ -57,6 +60,9 @@ public class TravelogueController implements Observed {
         if (currentDay >= travelogue.getDays().size()) {
             currentDay = 0;
         }
+        if (currentDay < 0) {
+            currentDay = travelogue.getDays().size() - 1;
+        }
     }
 
     public void removeDay() throws IOException {
@@ -69,12 +75,7 @@ public class TravelogueController implements Observed {
     }
 
     private void saveTravelogue() throws IOException {
-        File file = new File("resources/travelogue.json");
-        OutputStream stream = new FileOutputStream(file);
-        Gson gson = new Gson();
-
-        stream.write(gson.toJson(travelogue).getBytes());
-        stream.flush();
-        stream.close();
+        jsonFormatter.WriteToJSON("resources/travelogue.json");
+        notifyObservers();
     }
 }
