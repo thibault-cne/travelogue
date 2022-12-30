@@ -20,6 +20,7 @@
             <Button fx:id="addDay" text="Add Day"/>
             <Button fx:id="removeDay" text="Remove Day"/>
             <Button fx:id="editDay" text="Edit Day"/>
+            <Button fx:id="copyDay" text="Copy Day"/>
         </HBox>
     </top>
     <center>

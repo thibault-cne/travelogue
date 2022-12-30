@@ -2,6 +2,7 @@ package com.telecomnancy.eu.travelogue;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class TravelogueController implements Observed {
@@ -71,12 +72,25 @@ public class TravelogueController implements Observed {
     }
 
     public void removeDay() throws IOException {
+        if (currentDay == travelogue.getDays().size() - 1) {
+            travelogue.setEndDay(travelogue.getDays().get(currentDay - 1).getDate());
+        }
+
         travelogue.removeDay(currentDay);
-        saveTravelogue();
 
         if (currentDay == travelogue.getDays().size()) {
             currentDay--;
+        } else {
+            for (int i = currentDay; i < travelogue.getDays().size(); i++) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(travelogue.getDay(i).getDate());
+                calendar.add(Calendar.DATE, -1);
+                travelogue.getDay(i).setDate(calendar.getTime());
+            }
+            travelogue.setEndDay(travelogue.getDays().get(travelogue.getDays().size() - 1).getDate());
         }
+
+        saveTravelogue();
     }
 
     private void saveTravelogue() throws IOException {
@@ -146,5 +160,9 @@ public class TravelogueController implements Observed {
 
     public Day getDay(int i) {
         return travelogue.getDay(i);
+    }
+
+    public void setCurrentDay(int day) {
+        currentDay = day;
     }
 }

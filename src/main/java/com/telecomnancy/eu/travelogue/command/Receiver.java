@@ -112,4 +112,23 @@ public class Receiver {
     public void togglePresentation(SceneController sceneController) {
         sceneController.presentationScene();
     }
+
+    public void displaySpecificDay(SceneController sceneController, TravelogueController travelogueController, int day) {
+        travelogueController.setCurrentDay(day);
+        travelogueController.notifyObservers();
+        sceneController.mainScene();
+    }
+
+    public void copyDay(TravelogueController travelogueController) throws IOException {
+        Day dayToCopy = travelogueController.getCurrentDay();
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(travelogueController.getEndDate());
+        c.add(Calendar.DATE, 1);
+
+        Day newDay = new Day(c.getTime(), dayToCopy.getTitle(), dayToCopy.getDescription(), dayToCopy.getPictureString());
+        travelogueController.addDay(newDay);
+
+        travelogueController.notifyObservers();
+    }
 }

@@ -50,27 +50,39 @@ public class ViewGlobalController implements Initializable, Observer, Controller
 
     @Override
     public void react() {
+        title.setText("Title : " + travelogueController.getTitle());
+        nbDays.setText("Number of days : " + travelogueController.getNbDays());
         updateGrid();
     }
 
     private void updateGrid() {
         grid.getChildren().clear();
+        grid.setHgap(10);
+        grid.setVgap(10);
         int nbDays = travelogueController.getNbDays();
 
-        for (int i = 0; i < nbDays / 4; i++) {
+        for (int i = 0; i < (nbDays / 4) + 1; i++) {
             grid.addRow(i);
-            grid.gridLinesVisibleProperty().setValue(true);
             for (int j = 0; j < 4; j++) {
-                BorderPane border = new BorderPane();
-                border.setStyle("-fx-border-color: black");
+                int index = j + i * 4;
+
+                if (index >= nbDays) {
+                    break;
+                }
+                Button btn = new Button();
+                btn.setOnAction(event -> commandController.displaySpecificDay(index));
+
+                btn.setStyle("-fx-background-fill: black, white; -fx-background-insets: 0, 0 1 1 0;");
+                btn.setPrefWidth(120);
+                btn.setPrefHeight(120);
                 ImageView picture = new ImageView();
                 picture.setFitHeight(120);
                 picture.setFitWidth(120);
                 picture.setPreserveRatio(true);
-                picture.setImage(travelogueController.getDay(j + i * 4).getPicture());
-                border.setCenter(picture);
+                picture.setImage(travelogueController.getDay(index).getPicture());
+                btn.setGraphic(picture);
 
-                grid.addColumn(j, border);
+                grid.addColumn(j, btn);
             }
         }
     }

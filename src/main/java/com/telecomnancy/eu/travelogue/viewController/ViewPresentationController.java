@@ -58,7 +58,7 @@ public class ViewPresentationController implements Initializable, Controller {
                 sb.append(", ");
             }
         }
-        
+
         return sb.toString();
     }
 

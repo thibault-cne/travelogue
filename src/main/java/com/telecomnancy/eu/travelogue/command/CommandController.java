@@ -80,4 +80,10 @@ public class CommandController {
     public void togglePresentation() {
         executeCommand(new CommandTogglePresentation(receiver, sceneController));
     }
+    public void displaySpecificDay(int day) {
+        executeCommand(new CommandDisplaySpecificDay(receiver, day, sceneController, travelogueController));
+    }
+    public void copyDay() {
+        executeCommand(new CommandCopyDay(receiver, travelogueController));
+    }
 }

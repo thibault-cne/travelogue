@@ -35,6 +35,8 @@ public class ViewController implements Initializable, Observer, Controller {
     private Label description;
     @FXML
     private Button presentation;
+    @FXML
+    private Button copyDay;
 
 
     public ViewController(TravelogueController travelogueController, CommandController commandController) {
@@ -62,6 +64,7 @@ public class ViewController implements Initializable, Observer, Controller {
         });
         toggle.setOnAction(event -> commandController.toggleScene());
         presentation.setOnAction(event -> commandController.togglePresentation());
+        copyDay.setOnAction(event -> commandController.copyDay());
 
         updatePicture();
     }

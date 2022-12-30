@@ -1,6 +1,6 @@
 {
   "begDate": "Jan 1, 2015, 12:00:00 AM",
-  "endDate": "Jan 16, 2015, 12:00:00 AM",
+  "endDate": "Jan 14, 2015, 12:00:00 AM",
   "author": "John Doe",
   "title": "My Travelogue",
   "description": "A travelogue of my trip through the solar system",
@@ -93,18 +93,6 @@
     },
     {
       "date": "Jan 14, 2015, 12:00:00 AM",
-      "title": "empty",
-      "description": "empty",
-      "picture": "resources/pictures/default.png"
-    },
-    {
-      "date": "Jan 15, 2015, 12:00:00 AM",
-      "title": "empty",
-      "description": "empty",
-      "picture": "resources/pictures/default.png"
-    },
-    {
-      "date": "Jan 16, 2015, 12:00:00 AM",
       "title": "Day 16",
       "description": "I landed on venus",
       "picture": "resources/pictures/venus.jpeg"

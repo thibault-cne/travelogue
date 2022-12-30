@@ -68,4 +68,8 @@ public class Day {
     public File getPictureFile() {
         return new File(picture);
     }
+
+    public String getPictureString() {
+        return picture;
+    }
 }
