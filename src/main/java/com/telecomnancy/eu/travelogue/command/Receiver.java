@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Receiver {
@@ -53,11 +54,12 @@ public class Receiver {
         }
     }
 
-    public void createNewDay(TravelogueController travelogueController, ViewAddFormController viewAddFormController) throws IOException {
+    public void createNewDay(TravelogueController travelogueController, ViewAddFormController viewAddFormController, SceneController sceneController) throws IOException {
         // Convert date from DatePicker to Date
-        LocalDate localDate = viewAddFormController.getDate().getValue();
-        Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-        Date date = Date.from(instant);
+        Calendar c = Calendar.getInstance();
+        c.setTime(travelogueController.getEndDay());
+        c.add(Calendar.DATE, 1);
+        Date date = c.getTime();
 
         // Get title and description
         String titleString = viewAddFormController.getTitle().getText();
@@ -70,10 +72,10 @@ public class Receiver {
         }
 
         FileWriter.copyFile(file);
-        Day day = new Day(date, titleString, descriptionString, "resources/pictures/" + file.getName());
 
-        travelogueController.addDay(day);
+        travelogueController.addDay(new Day(date, titleString, descriptionString, "resources/pictures/" + file.getName()));
         travelogueController.notifyObservers();
+        sceneController.mainScene();
     }
 
     public void saveEditDay(SceneController sceneController, TravelogueController travelogueController, ViewEditFormController viewEditFormController) throws IOException {
@@ -95,6 +97,19 @@ public class Receiver {
             travelogueController.editDay(date, titleString, descriptionString);
         }
 
+        travelogueController.notifyObservers();
         sceneController.mainScene();
+    }
+
+    public void showTravelogue(SceneController sceneController) {
+        sceneController.globalScene();
+    }
+
+    public void toggleScene(SceneController sceneController) {
+        sceneController.toggleScene();
+    }
+
+    public void togglePresentation(SceneController sceneController) {
+        sceneController.presentationScene();
     }
 }

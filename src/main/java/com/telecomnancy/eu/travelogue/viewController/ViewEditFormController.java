@@ -18,11 +18,8 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ViewEditFormController implements Initializable, Controller, FormController, Observer {
-    private TravelogueController travelogueController;
-    private CommandController commandController;
-    private SceneController sceneController;
-    private File pictureFile;
+public class ViewEditFormController extends FormController implements Initializable, Controller, Observer {
+    private final CommandController commandController;
     @FXML
     private DatePicker date;
     @FXML
@@ -48,10 +45,9 @@ public class ViewEditFormController implements Initializable, Controller, FormCo
         return description;
     }
 
-    public ViewEditFormController(TravelogueController travelogueController, CommandController commandController, SceneController sceneController) {
-        this.travelogueController = travelogueController;
+    public ViewEditFormController(TravelogueController travelogueController, CommandController commandController) {
+        super(travelogueController);
         this.commandController = commandController;
-        this.sceneController = sceneController;
         commandController.setViewEditFormController(this);
         travelogueController.addObserver(this);
     }
@@ -65,12 +61,8 @@ public class ViewEditFormController implements Initializable, Controller, FormCo
             commandController.selectPicture((Stage) ((Node) event.getSource()).getScene().getWindow(), this);
         });
 
+        date.setDayCellFactory(dayCellFactory);
         setState();
-    }
-
-    @Override
-    public void setPicture(File file) {
-        this.pictureFile = file;
     }
 
     public File getPictureFile() {

@@ -13,8 +13,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ViewController implements Initializable, Observer, Controller {
-    private TravelogueController travelogueController;
-    private CommandController commandController;
+    private final TravelogueController travelogueController;
+    private final CommandController commandController;
     @FXML
     private Button nextDay;
     @FXML
@@ -26,11 +26,15 @@ public class ViewController implements Initializable, Observer, Controller {
     @FXML
     private Button removeDay;
     @FXML
+    private Button toggle;
+    @FXML
     private Label title;
     @FXML
     private ImageView picture;
     @FXML
     private Label description;
+    @FXML
+    private Button presentation;
 
 
     public ViewController(TravelogueController travelogueController, CommandController commandController) {
@@ -56,6 +60,8 @@ public class ViewController implements Initializable, Observer, Controller {
         editDay.setOnAction(event -> {
             commandController.editDay();
         });
+        toggle.setOnAction(event -> commandController.toggleScene());
+        presentation.setOnAction(event -> commandController.togglePresentation());
 
         updatePicture();
     }

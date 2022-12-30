@@ -1,9 +1,13 @@
 package com.telecomnancy.eu.travelogue;
 
 public class Participant {
-    private String name;
+    private final String name;
 
     public Participant(String name) {
         this.name = name;
+    }
+
+    public String toString() {
+        return name;
     }
 }

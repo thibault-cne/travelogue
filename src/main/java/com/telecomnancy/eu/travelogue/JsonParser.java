@@ -2,7 +2,8 @@ package com.telecomnancy.eu.travelogue;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.util.*;
+
 import com.google.gson.Gson;
 
 public class JsonParser {
@@ -22,7 +23,17 @@ public class JsonParser {
 
     public Travelogue getTravelogue() {
         Gson gson = new Gson();
+        Map map = gson.fromJson(content, Map.class);
 
-        return gson.fromJson(content, Travelogue.class);
+        Date begDay = new Date(map.get("begDate").toString());
+        Date endDay = new Date(map.get("endDate").toString());
+        String author = (String) map.get("author");
+        String title = (String) map.get("title");
+        String description = (String) map.get("description");
+
+        Participant[] participants = gson.fromJson(gson.toJson(map.get("participants")), Participant[].class);
+        Day[] days = gson.fromJson(gson.toJson(map.get("days")), Day[].class);
+
+        return new Travelogue(begDay, endDay, author, title, description, new ArrayList<Participant>(Arrays.asList(participants)), new ArrayList<Day>(Arrays.asList(days)));
     }
 }

@@ -2,11 +2,11 @@ package com.telecomnancy.eu.travelogue.command;
 
 import com.telecomnancy.eu.travelogue.TravelogueController;
 
-public class CommandPreviousDat implements Command {
+public class CommandPreviousDay implements Command {
     private Receiver receiver;
     private TravelogueController travelogueController;
 
-    public CommandPreviousDat(Receiver receiver, TravelogueController travelogueController) {
+    public CommandPreviousDay(Receiver receiver, TravelogueController travelogueController) {
         this.receiver = receiver;
         this.travelogueController = travelogueController;
     }

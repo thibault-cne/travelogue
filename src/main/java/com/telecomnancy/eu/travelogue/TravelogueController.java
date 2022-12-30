@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class TravelogueController implements Observed {
-    private Travelogue travelogue;
+    private final Travelogue travelogue;
     private  int currentDay;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
-    private JsonFormatter jsonFormatter;
+    private final JsonFormatter jsonFormatter;
 
     public TravelogueController(Travelogue travelogue) {
         this.travelogue = travelogue;
@@ -37,7 +37,14 @@ public class TravelogueController implements Observed {
         return travelogue.getDays().get(currentDay);
     }
 
+    public Date getEndDay() {
+        return travelogue.getEndDay();
+    }
+
     public void addDay(Day day) throws IOException {
+        if (day.getDate().after(travelogue.getEndDay())) {
+            travelogue.setEndDay(day.getDate());
+        }
         travelogue.addDay(day);
         saveTravelogue();
     }
@@ -90,5 +97,54 @@ public class TravelogueController implements Observed {
         travelogue.getDays().get(currentDay).setTitle(title);
         travelogue.getDays().get(currentDay).setDescription(description);
         saveTravelogue();
+    }
+
+    public Date getBegDay() {
+        return travelogue.getBegDay();
+    }
+
+    public boolean checkExistDay(Date date) {
+        for (Day day : travelogue.getDays()) {
+            if (day.getDate().equals(date)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String getAuthor() {
+        return travelogue.getAuthor();
+    }
+
+    public String getTitle() {
+        return travelogue.getTitle();
+    }
+
+    public String getDescription() {
+        return travelogue.getDescription();
+    }
+
+    public Date getBegDate() {
+        return travelogue.getBegDay();
+    }
+
+    public Date getEndDate() {
+        return travelogue.getEndDay();
+    }
+
+    public ArrayList<Participant> getParticipants() {
+        return travelogue.getParticipants();
+    }
+
+    public int getNbDays() {
+        return travelogue.getDays().size();
+    }
+
+    public ArrayList<Day> getDays() {
+        return travelogue.getDays();
+    }
+
+    public Day getDay(int i) {
+        return travelogue.getDay(i);
     }
 }

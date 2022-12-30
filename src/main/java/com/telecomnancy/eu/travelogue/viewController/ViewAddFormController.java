@@ -5,23 +5,14 @@ import com.telecomnancy.eu.travelogue.command.CommandController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ViewAddFormController implements Initializable, Controller, FormController {
-    private TravelogueController travelogueController;
-    private CommandController commandController;
-    private SceneController sceneController;
-    private File pictureFile;
-    @FXML
-    private DatePicker date;
+public class ViewAddFormController extends FormController implements Initializable, Controller {
+    private final CommandController commandController;
     @FXML
     private TextField title;
     @FXML
@@ -31,19 +22,14 @@ public class ViewAddFormController implements Initializable, Controller, FormCon
     @FXML
     private Button add;
 
-    public ViewAddFormController(TravelogueController travelogueController, CommandController commandController, SceneController sceneController) {
-        this.travelogueController = travelogueController;
+    public ViewAddFormController(TravelogueController travelogueController, CommandController commandController) {
+        super(travelogueController);
         this.commandController = commandController;
-        this.sceneController = sceneController;
         commandController.setViewAddFormController(this);
     }
 
     public File getPictureFile() {
         return pictureFile;
-    }
-
-    public DatePicker getDate() {
-        return date;
     }
 
     public TextField getTitle() {
@@ -55,16 +41,8 @@ public class ViewAddFormController implements Initializable, Controller, FormCon
     }
 
     @Override
-    public void setPicture(File file) {
-        this.pictureFile = file;
-    }
-
-    @Override
     public void initialize(URL location, ResourceBundle resources) {
         picture.setOnAction(event -> commandController.selectPicture((Stage)((Node) event.getSource()).getScene().getWindow(), this));
-        add.setOnAction(event -> {
-            commandController.createNewDay();
-            sceneController.mainScene();
-        });
+        add.setOnAction(event -> commandController.createNewDay());
     }
 }

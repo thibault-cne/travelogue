@@ -5,8 +5,6 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml">
     <Label text="Add a new day"/>
-    <Label text="Date"/>
-    <DatePicker fx:id="date"/>
     <Label text="Title"/>
     <TextField fx:id="title"/>
     <Label text="Description"/>

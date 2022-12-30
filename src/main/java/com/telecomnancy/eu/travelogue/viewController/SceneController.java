@@ -14,7 +14,8 @@ import java.io.IOException;
 
 public class SceneController implements Controller {
     private ArrayList<Scene> scenes = new ArrayList<Scene>();
-    private Stage stage;
+    private final Stage stage;
+    private int currentScene = 0;
 
     public SceneController(Stage stage, int width, int height) throws IOException {
         this.stage = stage;
@@ -22,15 +23,15 @@ public class SceneController implements Controller {
         generateScenes(width, height);
 
         this.stage.setTitle("Travelogue");
-        this.stage.setScene(scenes.get(0));
+        presentationScene();
     }
 
     public void show() {
         stage.show();
     }
 
-    private void switchScene(int index) {
-        stage.setScene(scenes.get(index));
+    private void switchScene() {
+        stage.setScene(scenes.get(currentScene));
     }
 
     private void generateScenes(int width, int height) throws IOException {
@@ -46,14 +47,22 @@ public class SceneController implements Controller {
         ViewController viewController = new ViewController(travelogueController, commandController);
 
         // Create add day view controller
-        ViewAddFormController viewAddFormController = new ViewAddFormController(travelogueController, commandController, this);
+        ViewAddFormController viewAddFormController = new ViewAddFormController(travelogueController, commandController);
 
         // Create edit day view controller
-        ViewEditFormController viewEditFormController = new ViewEditFormController(travelogueController, commandController, this);
+        ViewEditFormController viewEditFormController = new ViewEditFormController(travelogueController, commandController);
+
+        // Create view presentation controller
+        ViewPresentationController viewPresentationController = new ViewPresentationController(travelogueController, commandController);
+
+        // Create global view controller
+        ViewGlobalController viewGlobalController = new ViewGlobalController(travelogueController, commandController);
 
         generateView(viewController, "view.fxml", width, height);
         generateView(viewAddFormController,"addForm.fxml", width, height);
         generateView(viewEditFormController,"editForm.fxml", width, height);
+        generateView(viewPresentationController,"presentationView.fxml", width, height);
+        generateView(viewGlobalController,"globalView.fxml", width, height);
     }
 
     private void generateView(Controller controller, String fxml, int width, int height) throws IOException {
@@ -63,15 +72,32 @@ public class SceneController implements Controller {
         scenes.add(scene);
     }
 
-    public void editDayScene() {
-        switchScene(2);
-    }
-
-    public void addDayScene() {
-        switchScene(1);
-    }
-
     public void mainScene() {
-        switchScene(0);
+        currentScene = 0;
+        switchScene();
+    }
+    public void addDayScene() {
+        currentScene = 1;
+        switchScene();
+    }
+    public void editDayScene() {
+        currentScene = 2;
+        switchScene();
+    }
+    public void presentationScene() {
+        currentScene = 3;
+        switchScene();
+    }
+    public void globalScene() {
+        currentScene = 4;
+        switchScene();
+    }
+    public void toggleScene() {
+        if (currentScene == 4) {
+            currentScene = 0;
+        } else {
+            currentScene = 4;
+        }
+        switchScene();
     }
 }

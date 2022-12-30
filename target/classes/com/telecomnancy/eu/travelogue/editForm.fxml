@@ -13,7 +13,7 @@
     <Label text="Description"/>
     <TextArea fx:id="description"/>
     <Label text="Picture"/>
-    <ImageView fx:id="oldPicture"/>
+    <ImageView fx:id="oldPicture" fitHeight="400" fitWidth="300.0" preserveRatio="true" pickOnBounds="true"/>
     <Button fx:id="picture" text="Choose a picture"/>
     <Button fx:id="edit" text="Edit"/>
 </VBox>

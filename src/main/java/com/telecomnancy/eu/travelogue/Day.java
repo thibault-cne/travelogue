@@ -21,6 +21,13 @@ public class Day {
         this.picture = picture;
     }
 
+    public Day(Date date) {
+        this.date = date;
+        this.title = "empty";
+        this.description = "empty";
+        this.picture = "resources/pictures/default.png";
+    }
+
     public String getTitle() {
         return title;
     }
