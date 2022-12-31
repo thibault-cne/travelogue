@@ -30,6 +30,8 @@ public class ViewGlobalController implements Initializable, Observer, Controller
     private Label nbDays;
     @FXML
     private GridPane grid;
+    @FXML
+    private Button addDay;
 
     public ViewGlobalController(TravelogueController travelogueController, CommandController commandController) {
         this.travelogueController = travelogueController;
@@ -41,11 +43,9 @@ public class ViewGlobalController implements Initializable, Observer, Controller
     public void initialize(URL location, ResourceBundle resources) {
         toggle.setOnAction(event -> commandController.toggleScene());
         presentation.setOnAction(event -> commandController.togglePresentation());
+        addDay.setOnAction(event -> commandController.addDay());
 
-        title.setText("Title : " + travelogueController.getTitle());
-        nbDays.setText("Number of days : " + travelogueController.getNbDays());
-
-        updateGrid();
+        react();
     }
 
     @Override

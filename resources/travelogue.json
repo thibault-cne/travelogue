@@ -1,101 +1,107 @@
 {
-  "begDate": "Jan 1, 2015, 12:00:00 AM",
-  "endDate": "Jan 14, 2015, 12:00:00 AM",
-  "author": "John Doe",
-  "title": "My Travelogue",
+  "begDate": "Dec 31, 2022, 12:00:00 AM",
+  "endDate": "Jan 14, 2023, 12:00:00 AM",
+  "author": "Thibault Cheneviere",
+  "title": "My travelogue",
   "description": "A travelogue of my trip through the solar system",
   "participants": [
     {
-      "name": "John Doe"
+      "name": "Thibault Cheneviere"
     },
     {
-      "name": "Jane Doe"
+      "name": "John Doe"
     }
   ],
   "days": [
     {
-      "date": "Jan 1, 2015, 12:00:00 AM",
+      "date": "Dec 31, 2022, 12:00:00 AM",
       "title": "Day 1",
-      "description": "I landed on the earth",
+      "description": "I landed on earth",
       "picture": "resources/pictures/earth.jpeg"
     },
     {
-      "date": "Jan 2, 2015, 12:00:00 AM",
+      "date": "Jan 1, 2023, 12:00:00 AM",
       "title": "Day 2",
-      "description": "I landed on the moon",
-      "picture": "resources/pictures/moon.jpeg"
-    },
-    {
-      "date": "Jan 3, 2015, 12:00:00 AM",
-      "title": "Day 3",
       "description": "I landed on mercury",
       "picture": "resources/pictures/mercury.jpeg"
     },
     {
-      "date": "Jan 4, 2015, 12:00:00 AM",
+      "date": "Jan 2, 2023, 12:00:00 AM",
+      "title": "Day 3",
+      "description": "I landed on pluto",
+      "picture": "resources/pictures/pluto.jpeg"
+    },
+    {
+      "date": "Jan 3, 2023, 12:00:00 AM",
       "title": "Day 4",
       "description": "I landed on mars",
       "picture": "resources/pictures/mars.jpeg"
     },
     {
-      "date": "Jan 5, 2015, 12:00:00 AM",
+      "date": "Jan 4, 2023, 12:00:00 AM",
       "title": "Day 5",
-      "description": "I landed on saturne",
-      "picture": "resources/pictures/saturne.jpeg"
-    },
-    {
-      "date": "Jan 6, 2015, 12:00:00 AM",
-      "title": "Day 6",
-      "description": "I landed on neptune",
-      "picture": "resources/pictures/neptune.jpeg"
-    },
-    {
-      "date": "Jan 7, 2015, 12:00:00 AM",
-      "title": "Day 7",
-      "description": "I landed on pluto",
-      "picture": "resources/pictures/pluto.jpeg"
-    },
-    {
-      "date": "Jan 8, 2015, 12:00:00 AM",
-      "title": "empty",
-      "description": "empty",
-      "picture": "resources/pictures/default.png"
-    },
-    {
-      "date": "Jan 9, 2015, 12:00:00 AM",
-      "title": "empty",
-      "description": "empty",
-      "picture": "resources/pictures/default.png"
-    },
-    {
-      "date": "Jan 10, 2015, 12:00:00 AM",
-      "title": "empty",
-      "description": "empty",
-      "picture": "resources/pictures/default.png"
-    },
-    {
-      "date": "Jan 11, 2015, 12:00:00 AM",
-      "title": "empty",
-      "description": "empty",
-      "picture": "resources/pictures/default.png"
-    },
-    {
-      "date": "Jan 12, 2015, 12:00:00 AM",
-      "title": "empty",
-      "description": "empty",
-      "picture": "resources/pictures/default.png"
-    },
-    {
-      "date": "Jan 13, 2015, 12:00:00 AM",
-      "title": "empty",
-      "description": "empty",
-      "picture": "resources/pictures/default.png"
-    },
-    {
-      "date": "Jan 14, 2015, 12:00:00 AM",
-      "title": "Day 16",
       "description": "I landed on venus",
       "picture": "resources/pictures/venus.jpeg"
+    },
+    {
+      "date": "Jan 5, 2023, 12:00:00 AM",
+      "title": "Day 6",
+      "description": "I landed on the moon",
+      "picture": "resources/pictures/moon.jpeg"
+    },
+    {
+      "date": "Jan 6, 2023, 12:00:00 AM",
+      "title": "empty",
+      "description": "empty",
+      "picture": "resources/pictures/default.png"
+    },
+    {
+      "date": "Jan 7, 2023, 12:00:00 AM",
+      "title": "empty",
+      "description": "empty",
+      "picture": "resources/pictures/default.png"
+    },
+    {
+      "date": "Jan 8, 2023, 12:00:00 AM",
+      "title": "empty",
+      "description": "empty",
+      "picture": "resources/pictures/default.png"
+    },
+    {
+      "date": "Jan 9, 2023, 12:00:00 AM",
+      "title": "empty",
+      "description": "empty",
+      "picture": "resources/pictures/default.png"
+    },
+    {
+      "date": "Jan 10, 2023, 12:00:00 AM",
+      "title": "empty",
+      "description": "empty",
+      "picture": "resources/pictures/default.png"
+    },
+    {
+      "date": "Jan 11, 2023, 12:00:00 AM",
+      "title": "empty",
+      "description": "empty",
+      "picture": "resources/pictures/default.png"
+    },
+    {
+      "date": "Jan 12, 2023, 12:00:00 AM",
+      "title": "empty",
+      "description": "empty",
+      "picture": "resources/pictures/default.png"
+    },
+    {
+      "date": "Jan 13, 2023, 12:00:00 AM",
+      "title": "empty",
+      "description": "empty",
+      "picture": "resources/pictures/default.png"
+    },
+    {
+      "date": "Jan 14, 2023, 12:00:00 AM",
+      "title": "empty",
+      "description": "empty",
+      "picture": "resources/pictures/default.png"
     }
   ]
 }

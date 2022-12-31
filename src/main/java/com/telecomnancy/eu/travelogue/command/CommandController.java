@@ -54,7 +54,7 @@ public class CommandController {
         executeCommand(new CommandAddDay(receiver, sceneController));
     }
 
-    public void selectPicture(Stage mainStage, FormController formController) {
+    public void selectPicture(Stage mainStage, FormControllerWithPic formController) {
         executeCommand(new CommandSelectPicture(receiver, mainStage, formController));
     }
 
@@ -85,5 +85,16 @@ public class CommandController {
     }
     public void copyDay() {
         executeCommand(new CommandCopyDay(receiver, travelogueController));
+    }
+
+    public void createTravelogue(TravelogueController travelogueController, ViewNewTravelogue viewNewTravelogue) {
+        executeCommand(new CommandNewTravelogue(receiver, travelogueController, viewNewTravelogue, sceneController));
+    }
+    public void newTravelogueView() {
+        executeCommand(new CommandDisplayNewTravelogueView(receiver, sceneController));
+    }
+
+    public void previous() {
+        executeCommand(new CommandPrevious(receiver, sceneController));
     }
 }

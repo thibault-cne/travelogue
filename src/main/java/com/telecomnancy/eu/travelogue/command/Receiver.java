@@ -1,12 +1,7 @@
 package com.telecomnancy.eu.travelogue.command;
 
-import com.telecomnancy.eu.travelogue.Day;
-import com.telecomnancy.eu.travelogue.FileWriter;
-import com.telecomnancy.eu.travelogue.TravelogueController;
-import com.telecomnancy.eu.travelogue.viewController.FormController;
-import com.telecomnancy.eu.travelogue.viewController.SceneController;
-import com.telecomnancy.eu.travelogue.viewController.ViewAddFormController;
-import com.telecomnancy.eu.travelogue.viewController.ViewEditFormController;
+import com.telecomnancy.eu.travelogue.*;
+import com.telecomnancy.eu.travelogue.viewController.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -15,6 +10,7 @@ import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -42,7 +38,7 @@ public class Receiver {
         sceneController.addDayScene();
     }
 
-    public void selectPicture(Stage mainStage, FormController formController) {
+    public void selectPicture(Stage mainStage, FormControllerWithPic formController) {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Images files", "*.jpg", "*.png", "*.gif", "*.jpeg");
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(extFilter);
@@ -67,23 +63,20 @@ public class Receiver {
 
         // Copy picture to the project folder
         File file = viewAddFormController.getPictureFile();
-        if (file == null) {
-            return;
+        String fileName = "";
+        if (file != null) {
+            FileWriter.copyFile(file);
+            fileName = file.getName();
+        } else {
+            fileName = "default.jpg";
         }
 
-        FileWriter.copyFile(file);
-
-        travelogueController.addDay(new Day(date, titleString, descriptionString, "resources/pictures/" + file.getName()));
+        travelogueController.addDay(new Day(date, titleString, descriptionString, "resources/pictures/" + fileName));
         travelogueController.notifyObservers();
         sceneController.mainScene();
     }
 
     public void saveEditDay(SceneController sceneController, TravelogueController travelogueController, ViewEditFormController viewEditFormController) throws IOException {
-        // Convert date from DatePicker to Date
-        LocalDate localDate = viewEditFormController.getDate().getValue();
-        Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-        Date date = Date.from(instant);
-
         // Get title and description
         String titleString = viewEditFormController.getTitle().getText();
         String descriptionString = viewEditFormController.getDescription().getText();
@@ -92,12 +85,13 @@ public class Receiver {
         File file = viewEditFormController.getPictureFile();
         if (file != null) {
             FileWriter.copyFile(file);
-            travelogueController.editDay(date, titleString, descriptionString, "resources/pictures/" + file.getName());
+            travelogueController.editDay(titleString, descriptionString, "resources/pictures/" + file.getName());
         } else {
-            travelogueController.editDay(date, titleString, descriptionString);
+            travelogueController.editDay(titleString, descriptionString);
         }
 
         travelogueController.notifyObservers();
+        viewEditFormController.setPicture(null);
         sceneController.mainScene();
     }
 
@@ -130,5 +124,32 @@ public class Receiver {
         travelogueController.addDay(newDay);
 
         travelogueController.notifyObservers();
+    }
+
+    public void newTravelogue(TravelogueController travelogueController, ViewNewTravelogue viewNewTravelogue, SceneController sceneController) throws IOException {
+        Date begDate = Date.from(viewNewTravelogue.getBegDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date endDate = Date.from(viewNewTravelogue.getEndDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        String title = viewNewTravelogue.getTitle();
+        String description = viewNewTravelogue.getDescription();
+        String author = viewNewTravelogue.getAuthor();
+        ArrayList<String> participants = viewNewTravelogue.parseParticipants();
+
+        ArrayList<Participant> participantsList = new ArrayList<>();
+        for (String participant : participants) {
+            participantsList.add(new Participant(participant));
+        }
+
+        Travelogue travelogue = new Travelogue(begDate, endDate, author, title, description, participantsList);
+        travelogueController.setTravelogue(travelogue);
+        travelogueController.notifyObservers();
+        sceneController.globalScene();
+    }
+
+    public void displayNewTravelogueView(SceneController sceneController) {
+        sceneController.newTravelogueScene();
+    }
+
+    public void previous(SceneController sceneController) {
+        sceneController.back();
     }
 }

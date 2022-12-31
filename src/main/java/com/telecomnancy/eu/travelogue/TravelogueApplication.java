@@ -10,7 +10,7 @@ import java.io.IOException;
 public class TravelogueApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        SceneController sceneController = new SceneController(stage, 800, 600);
+        SceneController sceneController = new SceneController(stage, 1280, 720);
         sceneController.show();
     }
 

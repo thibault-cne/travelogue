@@ -8,42 +8,31 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class ViewEditFormController extends FormController implements Initializable, Controller, Observer {
+public class ViewEditFormController extends FormControllerWithPic implements Initializable, Controller, Observer {
     private final CommandController commandController;
-    @FXML
-    private DatePicker date;
     @FXML
     private TextField title;
     @FXML
     private TextArea description;
     @FXML
-    private ImageView oldPicture;
+    private ImageView previewPicture;
     @FXML
     private Button picture;
     @FXML
     private Button edit;
-
-    public DatePicker getDate() {
-        return date;
-    }
-
-    public TextField getTitle() {
-        return title;
-    }
-
-    public TextArea getDescription() {
-        return description;
-    }
+    @FXML
+    private Button previous;
 
     public ViewEditFormController(TravelogueController travelogueController, CommandController commandController) {
         super(travelogueController);
@@ -60,26 +49,46 @@ public class ViewEditFormController extends FormController implements Initializa
         picture.setOnAction(event -> {
             commandController.selectPicture((Stage) ((Node) event.getSource()).getScene().getWindow(), this);
         });
+        previous.setOnAction(event -> {
+            commandController.previous();
+        });
 
-        date.setDayCellFactory(dayCellFactory);
-        setState();
+        react();
+        updatePreviewPicture();
     }
 
     public File getPictureFile() {
         return pictureFile;
     }
 
-    @Override
-    public void react() {
-        setState();
+    public TextField getTitle() {
+        return title;
     }
 
-    private void setState() {
+    public TextArea getDescription() {
+        return description;
+    }
+
+    @Override
+    public void setPicture(File file) {
+        pictureFile = file;
+        updatePreviewPicture();
+    }
+
+    private void updatePreviewPicture() {
         Day day = travelogueController.getCurrentDay();
-        date.setValue(day.getDate().toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate());
+        if (pictureFile != null) {
+            previewPicture.setImage(new Image(pictureFile.toURI().toString()));
+        } else {
+            previewPicture.setImage(day.getPicture());
+        }
+    }
+
+    @Override
+    public void react() {
+        Day day = travelogueController.getCurrentDay();
         title.setText(day.getTitle());
         description.setText(day.getDescription());
-        oldPicture.setImage(day.getPicture());
-        pictureFile = null;
+        updatePreviewPicture();
     }
 }

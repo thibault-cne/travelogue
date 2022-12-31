@@ -24,4 +24,8 @@ public class JsonFormatter {
         stream.flush();
         stream.close();
     }
+
+    public void setTravelogue(Travelogue travelogue) {
+        this.travelogue = travelogue;
+    }
 }

@@ -1,5 +1,6 @@
 package com.telecomnancy.eu.travelogue.viewController;
 
+import com.telecomnancy.eu.travelogue.Observer;
 import com.telecomnancy.eu.travelogue.Participant;
 import com.telecomnancy.eu.travelogue.TravelogueController;
 import com.telecomnancy.eu.travelogue.command.CommandController;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class ViewPresentationController implements Initializable, Controller {
+public class ViewPresentationController implements Initializable, Controller, Observer {
     private final TravelogueController travelogueController;
     private final CommandController commandController;
     @FXML
@@ -31,6 +32,8 @@ public class ViewPresentationController implements Initializable, Controller {
     private Label participants;
     @FXML
     private Button show;
+    @FXML
+    private Button newTravelogue;
 
     public ViewPresentationController(TravelogueController travelogueController, CommandController commandController) {
         this.travelogueController = travelogueController;
@@ -40,7 +43,13 @@ public class ViewPresentationController implements Initializable, Controller {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         show.setOnAction(event -> commandController.showTravelogue());
+        newTravelogue.setOnAction(event -> commandController.newTravelogueView());
 
+        react();
+    }
+
+    @Override
+    public void react() {
         author.setText("Author : " + travelogueController.getAuthor());
         title.setText("Title : " + travelogueController.getTitle());
         description.setText("Description : " + travelogueController.getDescription());

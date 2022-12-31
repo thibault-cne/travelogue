@@ -1,15 +1,14 @@
 package com.telecomnancy.eu.travelogue.command;
 
-import com.telecomnancy.eu.travelogue.viewController.FormController;
-import com.telecomnancy.eu.travelogue.viewController.ViewAddFormController;
+import com.telecomnancy.eu.travelogue.viewController.FormControllerWithPic;
 import javafx.stage.Stage;
 
 public class CommandSelectPicture implements Command {
     Stage mainStage;
     Receiver receiver;
-    FormController formController;
+    FormControllerWithPic formController;
 
-    public CommandSelectPicture(Receiver receiver, Stage mainStage, FormController formController) {
+    public CommandSelectPicture(Receiver receiver, Stage mainStage, FormControllerWithPic formController) {
         this.receiver = receiver;
         this.mainStage = mainStage;
         this.formController = formController;

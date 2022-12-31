@@ -13,6 +13,16 @@ public class Travelogue {
     private ArrayList<Participant> participants;
     private ArrayList<Day> days = new ArrayList<Day>();
 
+    public Travelogue(Date begDate, Date endDate, String author, String title, String description, ArrayList<Participant> participants) {
+        this.begDate = begDate;
+        this.endDate = endDate;
+        this.author = author;
+        this.title = title;
+        this.description = description;
+        this.participants = participants;
+        fillDays(new ArrayList<>());
+    }
+
     public Travelogue(Date begDate, Date endDate, String author, String title, String description, ArrayList<Participant> participants, ArrayList<Day> days) {
         this.begDate = begDate;
         this.endDate = endDate;
@@ -20,7 +30,10 @@ public class Travelogue {
         this.title = title;
         this.description = description;
         this.participants = participants;
+        fillDays(days);
+    }
 
+    private void fillDays(ArrayList<Day> days) {
         Calendar c = Calendar.getInstance();
         c.setTime(begDate);
 

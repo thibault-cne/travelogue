@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class TravelogueController implements Observed {
-    private final Travelogue travelogue;
+    private Travelogue travelogue;
     private  int currentDay;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
     private final JsonFormatter jsonFormatter;
@@ -98,16 +98,14 @@ public class TravelogueController implements Observed {
         notifyObservers();
     }
 
-    public void editDay(Date date, String title, String description, String picture) throws IOException {
-        travelogue.getDays().get(currentDay).setDate(date);
+    public void editDay(String title, String description, String picture) throws IOException {
         travelogue.getDays().get(currentDay).setTitle(title);
         travelogue.getDays().get(currentDay).setDescription(description);
         travelogue.getDays().get(currentDay).setPicture(picture);
         saveTravelogue();
     }
 
-    public void editDay(Date date, String title, String description) throws IOException {
-        travelogue.getDays().get(currentDay).setDate(date);
+    public void editDay(String title, String description) throws IOException {
         travelogue.getDays().get(currentDay).setTitle(title);
         travelogue.getDays().get(currentDay).setDescription(description);
         saveTravelogue();
@@ -164,5 +162,12 @@ public class TravelogueController implements Observed {
 
     public void setCurrentDay(int day) {
         currentDay = day;
+        notifyObservers();
+    }
+
+    public void setTravelogue(Travelogue travelogue) throws IOException {
+        this.travelogue = travelogue;
+        jsonFormatter.setTravelogue(travelogue);
+        saveTravelogue();
     }
 }

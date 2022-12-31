@@ -3,9 +3,6 @@ package com.telecomnancy.eu.travelogue;
 import javafx.scene.image.Image;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDate;
 import java.util.Date;
 
 public class Day {
@@ -13,6 +10,7 @@ public class Day {
     private String title;
     private String description;
     private String picture;
+    private static String defaultPicture = "resources/pictures/default.png";
 
     public Day(Date date, String title, String description, String picture) {
         this.date = date;
@@ -25,11 +23,16 @@ public class Day {
         this.date = date;
         this.title = "empty";
         this.description = "empty";
-        this.picture = "resources/pictures/default.png";
+        this.picture = defaultPicture;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public static Image getDefaultPicture() {
+        File file = new File(defaultPicture);
+        return new Image(file.toURI().toString());
     }
 
     public String getDescription() {
