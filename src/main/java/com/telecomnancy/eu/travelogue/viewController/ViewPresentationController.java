@@ -1,6 +1,6 @@
 package com.telecomnancy.eu.travelogue.viewController;
 
-import com.telecomnancy.eu.travelogue.Observer;
+import com.telecomnancy.eu.travelogue.observer.Observer;
 import com.telecomnancy.eu.travelogue.Participant;
 import com.telecomnancy.eu.travelogue.TravelogueController;
 import com.telecomnancy.eu.travelogue.command.CommandController;
@@ -38,6 +38,7 @@ public class ViewPresentationController implements Initializable, Controller, Ob
     public ViewPresentationController(TravelogueController travelogueController, CommandController commandController) {
         this.travelogueController = travelogueController;
         this.commandController = commandController;
+        travelogueController.addObserver(this);
     }
 
     @Override

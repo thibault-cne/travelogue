@@ -1,7 +1,7 @@
 package com.telecomnancy.eu.travelogue.viewController;
 
 import com.telecomnancy.eu.travelogue.Day;
-import com.telecomnancy.eu.travelogue.Observer;
+import com.telecomnancy.eu.travelogue.observer.Observer;
 import com.telecomnancy.eu.travelogue.TravelogueController;
 import com.telecomnancy.eu.travelogue.command.CommandController;
 import javafx.fxml.FXML;

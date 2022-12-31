@@ -1,10 +1,13 @@
-package com.telecomnancy.eu.travelogue;
+package com.telecomnancy.eu.travelogue.io;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
 import com.google.gson.Gson;
+import com.telecomnancy.eu.travelogue.Day;
+import com.telecomnancy.eu.travelogue.Participant;
+import com.telecomnancy.eu.travelogue.Travelogue;
 
 public class JsonParser {
     private String content;
@@ -19,6 +22,7 @@ public class JsonParser {
         }
 
         content = json;
+        scanner.close();
     }
 
     public Travelogue getTravelogue() {
@@ -34,6 +38,7 @@ public class JsonParser {
         Participant[] participants = gson.fromJson(gson.toJson(map.get("participants")), Participant[].class);
         Day[] days = gson.fromJson(gson.toJson(map.get("days")), Day[].class);
 
-        return new Travelogue(begDay, endDay, author, title, description, new ArrayList<Participant>(Arrays.asList(participants)), new ArrayList<Day>(Arrays.asList(days)));
+        return new Travelogue(begDay, endDay, author, title, description,
+                new ArrayList<Participant>(Arrays.asList(participants)), new ArrayList<Day>(Arrays.asList(days)));
     }
 }

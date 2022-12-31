@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Main-Class: com.telecomnancy.eu.travelogue.app.Launcher
+Class-Path: javafx-fxml-19-mac-aarch64.jar javafx-base-19-mac-aarch64.ja
+ r javafx.base.jar javafx-graphics-19-mac-aarch64.jar javafx-graphics-19
+ .jar javafx-fxml-19.jar javafx-controls-19-mac-aarch64.jar javafx-contr
+ ols-19.jar gson-2.10.jar javafx-base-19.jar
+

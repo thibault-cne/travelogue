@@ -1,7 +1,7 @@
 package com.telecomnancy.eu.travelogue.viewController;
 
 import com.telecomnancy.eu.travelogue.Day;
-import com.telecomnancy.eu.travelogue.Observer;
+import com.telecomnancy.eu.travelogue.observer.Observer;
 import com.telecomnancy.eu.travelogue.TravelogueController;
 import com.telecomnancy.eu.travelogue.command.CommandController;
 import javafx.fxml.FXML;
@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,7 +39,6 @@ public class ViewController implements Initializable, Observer, Controller {
     private Button presentation;
     @FXML
     private Button copyDay;
-
 
     public ViewController(TravelogueController travelogueController, CommandController commandController) {
         this.travelogueController = travelogueController;
@@ -79,7 +80,12 @@ public class ViewController implements Initializable, Observer, Controller {
         if (day != null) {
             title.setText(day.getTitle());
             description.setText(day.getDescription());
-            picture.setImage(day.getPicture());
+            try {
+                picture.setImage(day.getPicture());
+            } catch (URISyntaxException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 }

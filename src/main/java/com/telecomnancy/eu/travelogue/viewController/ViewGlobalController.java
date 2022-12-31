@@ -1,7 +1,6 @@
 package com.telecomnancy.eu.travelogue.viewController;
 
-import com.telecomnancy.eu.travelogue.Day;
-import com.telecomnancy.eu.travelogue.Observer;
+import com.telecomnancy.eu.travelogue.observer.Observer;
 import com.telecomnancy.eu.travelogue.TravelogueController;
 import com.telecomnancy.eu.travelogue.command.CommandController;
 import javafx.fxml.FXML;
@@ -9,11 +8,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
+import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ViewGlobalController implements Initializable, Observer, Controller {
@@ -79,7 +77,12 @@ public class ViewGlobalController implements Initializable, Observer, Controller
                 picture.setFitHeight(120);
                 picture.setFitWidth(120);
                 picture.setPreserveRatio(true);
-                picture.setImage(travelogueController.getDay(index).getPicture());
+                try {
+                    picture.setImage(travelogueController.getDay(index).getPicture());
+                } catch (URISyntaxException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 btn.setGraphic(picture);
 
                 grid.addColumn(j, btn);

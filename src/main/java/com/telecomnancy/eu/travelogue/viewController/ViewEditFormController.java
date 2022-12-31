@@ -1,7 +1,7 @@
 package com.telecomnancy.eu.travelogue.viewController;
 
 import com.telecomnancy.eu.travelogue.Day;
-import com.telecomnancy.eu.travelogue.Observer;
+import com.telecomnancy.eu.travelogue.observer.Observer;
 import com.telecomnancy.eu.travelogue.TravelogueController;
 import com.telecomnancy.eu.travelogue.command.CommandController;
 import javafx.fxml.FXML;
@@ -15,8 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ViewEditFormController extends FormControllerWithPic implements Initializable, Controller, Observer {
@@ -80,7 +80,12 @@ public class ViewEditFormController extends FormControllerWithPic implements Ini
         if (pictureFile != null) {
             previewPicture.setImage(new Image(pictureFile.toURI().toString()));
         } else {
-            previewPicture.setImage(day.getPicture());
+            try {
+                previewPicture.setImage(day.getPicture());
+            } catch (URISyntaxException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 

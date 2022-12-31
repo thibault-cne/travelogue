@@ -1,6 +1,9 @@
-package com.telecomnancy.eu.travelogue;
+package com.telecomnancy.eu.travelogue.io;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class FileWriter {
     public static void copyFile(File file) {
@@ -16,6 +19,14 @@ public class FileWriter {
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public static void exportResource(InputStream source, String destination) {
+        try {
+            Files.copy(source, Paths.get(destination), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
         }
     }
 }

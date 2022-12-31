@@ -1,14 +1,14 @@
 package com.telecomnancy.eu.travelogue.command;
 
 import com.telecomnancy.eu.travelogue.*;
+import com.telecomnancy.eu.travelogue.io.FileWriter;
 import com.telecomnancy.eu.travelogue.viewController.*;
+
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -39,7 +39,8 @@ public class Receiver {
     }
 
     public void selectPicture(Stage mainStage, FormControllerWithPic formController) {
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Images files", "*.jpg", "*.png", "*.gif", "*.jpeg");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Images files", "*.jpg", "*.png",
+                "*.gif", "*.jpeg");
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(extFilter);
         fileChooser.setTitle("Open Resource File");
@@ -50,7 +51,8 @@ public class Receiver {
         }
     }
 
-    public void createNewDay(TravelogueController travelogueController, ViewAddFormController viewAddFormController, SceneController sceneController) throws IOException {
+    public void createNewDay(TravelogueController travelogueController, ViewAddFormController viewAddFormController,
+            SceneController sceneController) throws IOException {
         // Convert date from DatePicker to Date
         Calendar c = Calendar.getInstance();
         c.setTime(travelogueController.getEndDay());
@@ -63,20 +65,22 @@ public class Receiver {
 
         // Copy picture to the project folder
         File file = viewAddFormController.getPictureFile();
-        String fileName = "";
+        String fileName;
         if (file != null) {
             FileWriter.copyFile(file);
-            fileName = file.getName();
+            fileName = "resources/pictures/" + file.getName();
         } else {
-            fileName = "default.jpg";
+            fileName = Day.getDefaultPictureStr();
         }
 
-        travelogueController.addDay(new Day(date, titleString, descriptionString, "resources/pictures/" + fileName));
+        travelogueController
+                .addDay(new Day(date, titleString, descriptionString, fileName));
         travelogueController.notifyObservers();
         sceneController.mainScene();
     }
 
-    public void saveEditDay(SceneController sceneController, TravelogueController travelogueController, ViewEditFormController viewEditFormController) throws IOException {
+    public void saveEditDay(SceneController sceneController, TravelogueController travelogueController,
+            ViewEditFormController viewEditFormController) throws IOException {
         // Get title and description
         String titleString = viewEditFormController.getTitle().getText();
         String descriptionString = viewEditFormController.getDescription().getText();
@@ -107,7 +111,8 @@ public class Receiver {
         sceneController.presentationScene();
     }
 
-    public void displaySpecificDay(SceneController sceneController, TravelogueController travelogueController, int day) {
+    public void displaySpecificDay(SceneController sceneController, TravelogueController travelogueController,
+            int day) {
         travelogueController.setCurrentDay(day);
         travelogueController.notifyObservers();
         sceneController.mainScene();
@@ -120,13 +125,15 @@ public class Receiver {
         c.setTime(travelogueController.getEndDate());
         c.add(Calendar.DATE, 1);
 
-        Day newDay = new Day(c.getTime(), dayToCopy.getTitle(), dayToCopy.getDescription(), dayToCopy.getPictureString());
+        Day newDay = new Day(c.getTime(), dayToCopy.getTitle(), dayToCopy.getDescription(),
+                dayToCopy.getPictureString());
         travelogueController.addDay(newDay);
 
         travelogueController.notifyObservers();
     }
 
-    public void newTravelogue(TravelogueController travelogueController, ViewNewTravelogue viewNewTravelogue, SceneController sceneController) throws IOException {
+    public void newTravelogue(TravelogueController travelogueController, ViewNewTravelogue viewNewTravelogue,
+            SceneController sceneController) throws IOException {
         Date begDate = Date.from(viewNewTravelogue.getBegDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
         Date endDate = Date.from(viewNewTravelogue.getEndDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
         String title = viewNewTravelogue.getTitle();

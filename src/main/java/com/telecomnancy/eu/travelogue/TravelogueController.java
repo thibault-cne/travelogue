@@ -1,5 +1,9 @@
 package com.telecomnancy.eu.travelogue;
 
+import com.telecomnancy.eu.travelogue.io.JsonFormatter;
+import com.telecomnancy.eu.travelogue.observer.Observed;
+import com.telecomnancy.eu.travelogue.observer.Observer;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -7,7 +11,7 @@ import java.util.Date;
 
 public class TravelogueController implements Observed {
     private Travelogue travelogue;
-    private  int currentDay;
+    private int currentDay;
     private ArrayList<Observer> observers = new ArrayList<Observer>();
     private final JsonFormatter jsonFormatter;
 

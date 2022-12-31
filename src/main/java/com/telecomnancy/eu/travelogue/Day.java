@@ -3,6 +3,8 @@ package com.telecomnancy.eu.travelogue;
 import javafx.scene.image.Image;
 
 import java.io.File;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Date;
 
 public class Day {
@@ -30,6 +32,10 @@ public class Day {
         return title;
     }
 
+    public static String getDefaultPictureStr() {
+        return defaultPicture;
+    }
+
     public static Image getDefaultPicture() {
         File file = new File(defaultPicture);
         return new Image(file.toURI().toString());
@@ -37,10 +43,6 @@ public class Day {
 
     public String getDescription() {
         return description;
-    }
-
-    public String toString() {
-        return title.concat(" ").concat(description).concat(" ").concat(picture);
     }
 
     public void setDate(Date date) {
@@ -59,7 +61,7 @@ public class Day {
         this.picture = picture;
     }
 
-    public Image getPicture() {
+    public Image getPicture() throws URISyntaxException {
         File file = new File(picture);
         return new Image(file.toURI().toString());
     }

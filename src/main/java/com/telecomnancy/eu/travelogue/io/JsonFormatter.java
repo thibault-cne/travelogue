@@ -1,7 +1,8 @@
-package com.telecomnancy.eu.travelogue;
+package com.telecomnancy.eu.travelogue.io;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.telecomnancy.eu.travelogue.Travelogue;
 
 import java.io.*;
 

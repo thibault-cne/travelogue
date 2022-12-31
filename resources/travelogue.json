@@ -1,53 +1,50 @@
 {
   "begDate": "Dec 31, 2022, 12:00:00 AM",
-  "endDate": "Jan 14, 2023, 12:00:00 AM",
-  "author": "Thibault Cheneviere",
+  "endDate": "Jan 15, 2023, 12:00:00 AM",
+  "author": "thib",
   "title": "My travelogue",
-  "description": "A travelogue of my trip through the solar system",
+  "description": "My travelogue",
   "participants": [
     {
-      "name": "Thibault Cheneviere"
-    },
-    {
-      "name": "John Doe"
+      "name": "thib"
     }
   ],
   "days": [
     {
       "date": "Dec 31, 2022, 12:00:00 AM",
-      "title": "Day 1",
-      "description": "I landed on earth",
-      "picture": "resources/pictures/earth.jpeg"
+      "title": "empty",
+      "description": "empty",
+      "picture": "resources/pictures/default.png"
     },
     {
       "date": "Jan 1, 2023, 12:00:00 AM",
-      "title": "Day 2",
-      "description": "I landed on mercury",
-      "picture": "resources/pictures/mercury.jpeg"
+      "title": "empty",
+      "description": "empty",
+      "picture": "resources/pictures/neptune.jpeg"
     },
     {
       "date": "Jan 2, 2023, 12:00:00 AM",
-      "title": "Day 3",
-      "description": "I landed on pluto",
-      "picture": "resources/pictures/pluto.jpeg"
+      "title": "empty",
+      "description": "empty",
+      "picture": "resources/pictures/default.png"
     },
     {
       "date": "Jan 3, 2023, 12:00:00 AM",
-      "title": "Day 4",
-      "description": "I landed on mars",
-      "picture": "resources/pictures/mars.jpeg"
+      "title": "empty",
+      "description": "empty",
+      "picture": "resources/pictures/default.png"
     },
     {
       "date": "Jan 4, 2023, 12:00:00 AM",
-      "title": "Day 5",
-      "description": "I landed on venus",
-      "picture": "resources/pictures/venus.jpeg"
+      "title": "empty",
+      "description": "empty",
+      "picture": "resources/pictures/default.png"
     },
     {
       "date": "Jan 5, 2023, 12:00:00 AM",
-      "title": "Day 6",
-      "description": "I landed on the moon",
-      "picture": "resources/pictures/moon.jpeg"
+      "title": "empty",
+      "description": "empty",
+      "picture": "resources/pictures/default.png"
     },
     {
       "date": "Jan 6, 2023, 12:00:00 AM",
@@ -77,7 +74,7 @@
       "date": "Jan 10, 2023, 12:00:00 AM",
       "title": "empty",
       "description": "empty",
-      "picture": "resources/pictures/default.png"
+      "picture": "resources/pictures/pluto.jpeg"
     },
     {
       "date": "Jan 11, 2023, 12:00:00 AM",
@@ -99,9 +96,15 @@
     },
     {
       "date": "Jan 14, 2023, 12:00:00 AM",
+      "title": "",
+      "description": "",
+      "picture": "resources/pictures/default.png"
+    },
+    {
+      "date": "Jan 15, 2023, 12:00:00 AM",
       "title": "empty",
       "description": "empty",
-      "picture": "resources/pictures/default.png"
+      "picture": "resources/pictures/neptune.jpeg"
     }
   ]
 }
